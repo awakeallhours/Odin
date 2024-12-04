@@ -9,29 +9,75 @@ body {
 }
 
 header {
-    display: flex;
-    font-size: 48px;
-    font-weight: 900;
+    /* display: flex; */
+    
     background-color:  #1F2937;
     color: #F9FaF8;
     height: 400px;
 }
 
-.logo {
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    align-items: center;
+}
 
+
+
+.logo {
+    font-size: 24px;
 }
 
 .links {
+    display: flex;
+    list-style: none;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+}
 
+.container-hero {
+    padding-left: 200px;
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 header h1 {
-    color: orange;
+    font-size: 48px;
+    font-weight: 900;
+    color: white;
 }
 
-header p {
-    color: red;
+.image {
+    /* needs to be same heihgt as hero header */
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 200px;
+    margin-top: -300px;
 }
+
+img {
+    
+}
+
+.container-subtext {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    background-color: royalblue;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    width: 100px;
+}
+
 .main {
     background-color: grey;
     display: flex;
