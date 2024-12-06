@@ -54,11 +54,14 @@ header h1 {
 }
 
 .image {
-    /* needs to be same heihgt as hero header */
     display: flex;
-    justify-content: flex-end;
     margin-right: 200px;
-    margin-top: -300px;
+    margin-left: 600px;
+    margin-top: -200px;
+    height: 200px;
+    width: 50%;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
 }
 
 img {
@@ -102,6 +105,7 @@ button {
 
 footer {
     display: flex;
+    margin-top: 175px;
     height: 50px;
     background-color:  #1f2937;
 }
