@@ -13,7 +13,7 @@ header {
     
     background-color:  #1F2937;
     color: #F9FaF8;
-    height: 400px;
+    height: 500px;
 }
 
 .container {
@@ -85,33 +85,34 @@ button {
 
 .main {
     display: flex;
-    flex-direction: column;
     background-color: grey;
-    justify-content: center;
     color: #F9FaF8;
-    height: 300px;
-    flex-direction: column;
+    height: 400px;
+    flex-direction: row;
+    align-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
 }
 
 .main-title {
-    margin-top: 40px;
+    font-size: 32px;
     justify-content: flex-start;
     justify-items: center;
     align-content: center;
     text-align: center;
+    width: 100%;
 }
 
 .cards {
-    margin: 100px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   
+    display: inline-grid;
+    justify-items: center;
+    
     
 }
 
-.main-image-container {
 
-}
 
 .main-image {
     border: 2px solid blue;
@@ -121,19 +122,85 @@ button {
     padding: 8px;
 }
 
-.main-image-text {
-    
-}
 
 .image-text {
 
 }
 
+/*TESTIMONIAL*/
 
-
-.testionial {
+.testimonial {
     display: flex;
     height: 300px;
+    background-color: #1F2937;
+    font-size: 30px;
+    color: white;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px 350px;
+}
+
+
+
+.quote {
+
+}
+
+.author {
+    font-weight: 700;
+
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+
+.banner-box {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(7, 82, 211, 0.932);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    height: 100px;
+    width: 60%;
+    padding: 20px;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.banner-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.banner-text {
+    flex-direction: column;
+    font-size: 20px;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.banner-text {
+    display: flex;
+    width: 40%;
+    align-items: center;
+}
+
+.footer-button.sign-up {
+    width: 10%;
+    border-color: white;
 }
 
 .sign-up {
@@ -142,7 +209,9 @@ button {
 
 footer {
     display: flex;
-    margin-top: 175px;
     height: 50px;
     background-color:  #1f2937;
+    color: white;
+    justify-content: center;
+    align-items: center;
 }
