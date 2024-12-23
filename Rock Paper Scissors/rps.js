@@ -1,9 +1,8 @@
+let counter = 0;
+
 const container = document.querySelector("#container");
 
-
-
-
-
+container.setAttribute("style", "background: darkgreen;")
 
 const title = document.createElement("h1");
 title.classList.add("title");
@@ -18,7 +17,7 @@ container.appendChild(scores)
 
 let round = document.createElement("h2")
 round.classList.add("round")
-round.textContent = `Round ${round}`
+round.textContent = `Round 0`;
 scores.appendChild(round)
 
 let computerScore = 0;
@@ -35,42 +34,66 @@ scoreHum.textContent = `Human Score: ${humanScore}`;
 scoreHum.setAttribute("style", "display: inline-block; margin: 8px;")
 scores.appendChild(scoreHum)
 
+const resultTextH = document.createElement("h2")
+resultTextH.classList.add("resultText")
+resultTextH.textContent = "Get Ready to Play!";
+resultTextH.setAttribute("style", "text-align: center;")
+container.appendChild(resultTextH)
+
 const buttonsContainer = document.createElement("div");
 buttonsContainer.classList.add("buttonsContainer");
 buttonsContainer.setAttribute("style", "text-align: center")
 container.appendChild(buttonsContainer)
 
-let clicky = ""
+
 const rockButton = document.createElement("button");
 rockButton.classList.add("btn");
 rockButton.id = "rock"
 rockButton.textContent = "Rock";
-rockButton.setAttribute("style", "padding: 8px; margin: 8px;")
-//rockButton.addEventListener("click", function() {getHumanChoice("rock")})
+
+
 
 const paperButton = document.createElement("button");
 paperButton.classList.add("btn");
 paperButton.id = "paper"
 paperButton.textContent = "Paper";
-paperButton.setAttribute("style", "padding: 8px; margin: 8px;")
-//paperButton.addEventListener("click", function() {getHumanChoice("paper")})
+
+
 
 const scissorsButton = document.createElement("button");
 scissorsButton.classList.add("btn");
 scissorsButton.id = "scissors"
 scissorsButton.textContent = "Scissors";
-scissorsButton.setAttribute("style", "padding: 8px; margin: 8px;")
-//scissorsButton.addEventListener("click", function() {getHumanChoice("scissors")})
+
+
+const playAgain = document.createElement("button");
+playAgain.classList.add("playAgain");
+playAgain.textContent = "Play Again";
+playAgain.setAttribute("style", "padding: 8px; margin: 8px; display: none;")
+buttonsContainer.appendChild(playAgain)
+
+
+
+rockButton.addEventListener("click", function () {playRound(getComputerChoice(),getHumanChoice("rock"))
+})
+paperButton.addEventListener("click", function () {playRound(getComputerChoice(),getHumanChoice("paper"))
+})
+scissorsButton.addEventListener("click", function () {playRound(getComputerChoice(),getHumanChoice("scissors"))
+})
+//fix this button and how it works
+playAgain.addEventListener("click", function () {newGame()
+})
+
 
 buttonsContainer.appendChild(rockButton);
 buttonsContainer.appendChild(paperButton);
 buttonsContainer.appendChild(scissorsButton);
 
+const gameButtons = document.querySelectorAll(".btn");
 
-function clicked(clicky)
-{
-    
-}
+gameButtons.forEach((button) => { button.setAttribute("style", "padding: 8px; margin: 8px;")})
+
+
 
 function getComputerChoice() {
     const rand = Math.floor(Math.random() * 3)
@@ -88,44 +111,26 @@ function getComputerChoice() {
         selected = "Scissors"
     }
 
-    console.log(`comuter choice ${selected}`)
+    console.log(`computer choice ${selected}`)
     return selected.toLowerCase();
     
 }
 
-//no value is being returned or all values are being returned..... just need one value
+function newGame() {
+    playAgain.setAttribute("style", "display: none;")
+    gameButtons.forEach((button) => { button.setAttribute("style", "display: inline-block; padding: 8px; margin: 8px;")})
+    scoreCom.setAttribute("style", "color: Black; display: inline-block; margin: 8px;;")
+    scoreHum.setAttribute("style", "color: Black; display: inline-block; margin: 8px;;")
+    resultTextH.setAttribute("style", "text-align: center; color: Black;")
+    resultTextH.textContent = "Get Ready to Play!";
+    counter = 0;
+    humanScore = 0;
+    computerScore = 0;
+}
+
+
 function getHumanChoice(choice) {
     
-    rockButton.addEventListener("click", function () {playRound(getComputerChoice,getHumanChoice("rock"))
-    })
-    paperButton.addEventListener("click", function () {playRound(getComputerChoice,getHumanChoice("paper"))
-    })
-    scissorsButton.addEventListener("click", function () {playRound(getComputerChoice,getHumanChoice("scissors"))
-    //choice = "scissors"
-    })
-    /*const buttons = document.querySelectorAll(".btn")
-    console.log("before selection")
-    buttons.forEach((button) => {
-        addEventListener("click", () => {
-        if(button.id === "rock")
-        {
-            choice = "rock"
-            
-        }
-        else if(button.id === "paper")
-        {
-            choice = "paper"
-        }
-        else if(button.id === "scissors")
-        {
-            choice = "scissors"
-        }
-        console.log(`end of if choice ${choice}`)
-        });
-    })*/
-    //console.log(buttons)
-    console.log("after selection")
-
     
     console.log(choice)
     return choice;
@@ -134,6 +139,7 @@ function getHumanChoice(choice) {
 function playRound(computerChoice, humanChoice){
     
     let resultText = "";
+    
     
     
     if(computerChoice === "rock")
@@ -196,23 +202,44 @@ function playRound(computerChoice, humanChoice){
             }
     }
     
-    const result = console.log(`${resultText} Computer Score: ${computerScore} - Your Score ${humanScore}`)
+    round.textContent = `Round ${counter + 1}`;
+    ++ counter  ;
+    const result = console.log(`${resultText}`)
+    resultTextH.textContent = `${resultText}`;
     scoreHum.textContent = `Human Score: ${humanScore}`;
     scoreCom.textContent = `Computer Score: ${computerScore}`;
+    
+    if(counter >= 5) {
+        
+        gameButtons.forEach((button) => { button.setAttribute("style", "display: none;")})
+        
+        playAgain.setAttribute("style","padding: 8px; margin: 8px; display: none; display: inline-block;")
+        
+        if(humanScore > computerScore)
+        {
+            resultTextH.textContent = "You Win the Game!";
+            resultTextH.setAttribute("style", "text-align: center; color: Green;")
+        }
+        else if(humanScore < computerScore)
+        {
+            resultTextH.textContent = "Computer Wins the Game!";
+            resultTextH.setAttribute("style", "text-align: center; color: Red;")
+        }
+        else if(humanScore === computerScore)
+        {
+            resultTextH.textContent = "It's a Tie!";
+        }
+        
+        scoreHum.textContent = `Human Score: ${humanScore}`;
+        scoreHum.setAttribute("style", "color: Green; display: inline-block; margin: 8px;;")
+        scoreCom.textContent = `Computer Score: ${computerScore}`;
+        scoreCom.setAttribute("style", "color: Red; display: inline-block; margin: 8px;;")
+        
+        
+    }
+    
+    console.log(counter)
     return result;
 
     
 }
-
-getHumanChoice()
-//playRound(getHumanChoice(),getComputerChoice)
-
-        
-    
-    
-
-
-
-
-
-
